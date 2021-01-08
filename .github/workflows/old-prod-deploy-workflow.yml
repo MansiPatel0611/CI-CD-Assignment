@@ -22,11 +22,5 @@ jobs:
       run: dotnet restore ./CI_CD_Assignment/CI_CD_Assignment/CI_CD_Assignment.csproj
     - name: Build Server side
       run: dotnet build --configuration Release --no-restore ./CI_CD_Assignment/CI_CD_Assignment/CI_CD_Assignment.csproj
-  #  - name: Publish package
-  #    run: dotnet publish -r win-x64 -f netcoreapp2.1 --configuration Release -o '${{ github.workspace }}/ci-cd-assignment' ./CI_CD_Assignment/CI_CD_Assignment/CI_CD_Assignment.csproj
-  #  - name: Deploy to Azure
-   #   uses: azure/webapps-deploy@v2
-    #  with: 
-     #   app-name: ${{ env.AZURE_WEBAPP_NAME }} # Replace with your app name
-      #  publish-profile: ${{ secrets.AZURE_QUESTY_OLD_PROD_PUBLISHPROFILE  }} # Define secret variable in repository settings as per action documentation
-       # package: '${{ github.workspace }}/questy-old-prod'
+    - name: Publish package
+      run: dotnet publish -r win-x64 -f netcoreapp2.1 --configuration Release -o '${{ github.workspace }}/ci-cd-assignment' ./CI_CD_Assignment/CI_CD_Assignment/CI_CD_Assignment.csproj
