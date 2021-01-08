@@ -27,4 +27,4 @@ jobs:
     - uses: actions/upload-artifact@v1
       with:
         name: Publish server
-        path: src/ci-cd-assignment/bin/release/netcoreapp3.1/publish
+        path: /bin/release/netcoreapp3.1/publish
