@@ -24,3 +24,7 @@ jobs:
       run: dotnet build --configuration Release --no-restore ./CI_CD_Assignment/CI_CD_Assignment/CI_CD_Assignment.csproj
     - name: Publish package
       run: dotnet publish -r win-x64 -f netcoreapp3.1 --configuration Release -o '${{ github.workspace }}/ci-cd-assignment' ./CI_CD_Assignment/CI_CD_Assignment/CI_CD_Assignment.csproj
+    - uses: actions/upload-artifact
+      with:
+        name: Publish server
+        path: src/ci-cd-assignment/bin/release/netcoreapp3.1/publish
