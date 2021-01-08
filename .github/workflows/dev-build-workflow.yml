@@ -1,4 +1,4 @@
-name: Master Deployment
+name: Development Deployment
 
 on:
   push:
