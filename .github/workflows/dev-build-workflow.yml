@@ -27,12 +27,12 @@ jobs:
     - name: Publish package
       run:  dotnet publish ./CI_CD_Assignment/CI_CD_Assignment/CI_CD_Assignment.csproj --configuration release
 
-    - uses: actions/cache@v2
-      with:
-        path: ~/.nuget/packages
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-        restore-keys: |
-            ${{ runner.os }}-nuget-
+  #  - uses: actions/cache@v2
+   #   with:
+    #    path: ~/.nuget/packages
+     #   key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+      #  restore-keys: |
+       #     ${{ runner.os }}-nuget-
 
     - uses: actions/upload-artifact@v1
       with:
