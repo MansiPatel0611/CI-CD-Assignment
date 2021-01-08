@@ -1,21 +1,30 @@
-name: Master PR Build
+name: Master Deployment
 
 on:
-  pull_request:
+  push:
     branches: [ master ]
-env:  
+env:
+  AZURE_WEBAPP_NAME: ci-cd-assignment    # set this to your application's name  
+  DOTNET_VERSION: '3.1'           # set this to the dot net version to use
   DOTNET_CLI_TELEMETRY_OPTOUT: '1'
-  
 jobs:
   build:
 
     runs-on: [ ubuntu-latest ]
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1    
+        dotnet-version: ${{ env.DOTNET_VERSION }}
     - name: Install dependencies
-      run: dotnet build --configuration Release ./CI_CD_Assignment/CI_CD_Assignment/CI_CD_Assignment.csproj   
+      run: dotnet restore ./CI_CD_Assignment/CI_CD_Assignment/CI_CD_Assignment.csproj
+    - name: Build Server side
+      run: dotnet build --configuration Release --no-restore ./CI_CD_Assignment/CI_CD_Assignment/CI_CD_Assignment.csproj
+    - name: Publish package
+      run:  dotnet publish ./CI_CD_Assignment/CI_CD_Assignment/CI_CD_Assignment.csproj --configuration release
+    - uses: actions/upload-artifact@v1
+      with:
+        name: Publish server
+        path: ./CI_CD_Assignment/CI_CD_Assignment/bin/release/netcoreapp3.1/publish
